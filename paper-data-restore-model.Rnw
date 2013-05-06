@@ -153,13 +153,13 @@ Klaus Tochtermann\\
 Researchers are more and more requested to publish their scientific data sets for purposes of transparency, re-use, and reproducibility.
 Particularly in economics and the social sciences, researchers often use sensitive statistical data that underlies protection policies that inhibit distribution to third party archives.
 In addition, a substantial quantity of data sets is combined from one or more external providers, which easily complicates curation-related activities. %---when working with data copies
-These circumstances give us reason to pursue a data restore model based on fine-grained referencing that allows to trace data provenance to the original archive that is in charge of curation.
+These circumstances give us reason to pursue a data restore model based on fine-grained referencing that allows to trace data provenance to the original archive in charge of curation.
 One goal is to enable data publication in difficult settings.
 %BZ: "this research" koennte verwechselt werden mit der research, die reproduzierbar sein soll. wie waers mit "our goal is to enable ..."
 Moreover, we show how the gaps between data citation and code integration can be closed as to eliminate all manual efforts of arranging code and data for reproduction attempts. 
-On this basis, we develop the requirements for a data restore model and elaborate a generic design and its implication on an overall data management infrastructure.
+On this basis, we develop the requirements for a data restore model and elaborate a generic design in view of an overall data management infrastructure.
 We further present a proof of concept implementation on the basis of a real-world example from economics.
-Eventually we close with the vision of a data and code ontology that carries empirical models from paper to a re-usable semantic level.
+Eventually we close with the vision of a data and code ontology that carries statistical models from paper to a re-usable semantic level.
 
 
 
@@ -803,7 +803,60 @@ We also inserted the two restore calls above in the source code of our example p
 %\end{quote}
 
 
-\section{Vision, Summary, and Outlook}
+\section{Summary, Vision and Outlook}
+
+
+The ideas presented in this work can be used to offer data and code behind research publications, which increases transparency, re-use, and reproducibility.
+
+We have formulated requirements
+
+We have demonstrated how fine grained data referencing in our data restore model can overcome the problem of data protection.
+%Within the data template single data values can be addressed, even if the original data set is not publicly available.
+The introduced data templates provide precise pointers to the data used and can be disseminated freely as they do not disclose sensitive content.
+Since data files can be restored in the format used by the researcher, the template technique closes the gaps between data citation and program code integration.
+With the precise identification of values, provenance of the data used can be clarified comprehensively whereas responsibilities for maintenance and documentation of a data set are left to one archive respectively, so that harvesting techniques can be used efficiently to carry forward documentation, notes and updates about the data.
+
+
+%Researchers can make use of these information resources directly from within their research environment and run on updated data....
+
+We have overcome some of the obstacles (data protection, distributed sources, tracability, source code integration vs. citation) and shown how a "one-click solution" to reproduce results can be implemented in which the gaps between data citation and code integration are closed.
+
+
+
+
+Assigning URIs to single data values sets the stage for integration with RDF which has potential for valuable applications.
+A semantic model could offer researchers to run same analyses on updated data with no efforts on data retrieval and composition.
+While most statistical models today exist on paper only, the current work on reproducibility allows to rerun it again on the original or updated data, and the vision is to make them re-usable for other data as well.
+A research publication could remain more relevant for extended periods of time if a prognostic model on time series data for example can still be used on new records while the published article is no longer relevant to the community.
+Linked with thesauri, researchers can find these models by topic and re-use them in their own context while valuable user assistance can be given automatically if the semantic annotations specify clearly the kind of data it can process meaningfully.
+
+
+Moreover, these models could serve as input for the artificial intelligence community as they often describe abstract concepts like "living standards" or "justice" which are typically hard to model.
+Although these models are and should always be debatable, the semantic linkage to statistical indicators gives information on aspects that are relevant for understanding these concepts.
+Further, prognostic models could be combined in ensembles and trained with machine learning techniques, which might again serve the computational statistics community in their research.
+
+
+
+
+
+%
+% Vision
+%
+
+The material can be used in tutorials to teach computational research in practice, serve as re-usable research resources, or can be used within review-processes.
+
+%BZ: was genau meinst du mit the material? unseren code? restored data (references)?
+
+ 
+
+Considering a tight connection of data or data references with code and the eventually text of a research publication, the idea of a data and code ontology comes up.
+
+Such an ontology could be used to model the interconnection between data, code and research results in detail. Moreover, if also containing the data values of our data template, it could also be used as an intermediate data set for reproduce data computations without having access to the original data.
+
+We will investigate the design and development of a data and code ontology in our future work.
+
+
+
 
 
 The ideas presented in this work could be used to offer data and code behind statistical research publications to students and researchers.
@@ -819,7 +872,6 @@ or as part of review-pr
 
 
 
-We have overcome some of the obstacles (data protection, distributed sources, tracability, source code integration (vs. citation) ) and shown how a "one-click solution" to reproduce results can be implemented in which the gaps between data citation and code integration are closed.
 
 Tutorials could be 
 The material could help learn and understand research in practice
@@ -828,28 +880,12 @@ The material could help learn and understand research in practice
 
 
 
+Scalability needs to be tested. If the idea is rolled out to the archives, would the servers with billions of IDs scale?
 
 
 
 
 
-
-%BZ: die zusammenlegung finde ich sehr sinnvoll
-
-
-%
-% Metadaten, DDI, SDMX, LOD etc. können wir im Prinzip als Technologien zur Dokumentation und zur Unterstützung von Data Retrieval betrachten.
-% Wir suchen aber ja nicht nach Daten sondern haben konkrete Pointer. Wsa anderes wird in der Reproduktionsfrage auch nicht benötigt.
-% Auskehren, dass unsere Technik sich prima mit Sem Web Technologien integriert. 
-% Die Diskussion um geeignete Metadaten und Ontologien sollte vielleicht unabhängig von unserer Problemstellung geführt werden?
-%
-% Andererseits geht es auch um die Integration des Modells mit der Literatur. 
-% Irgendwie wollen wir ja schon mit reinbringen, dass Template und Source Code dann auch mit einem Artikel assoziiert werden sollte.
-% Dafür brauchen wir eine Ontologie.
-
-% Das hängt auch mit der möglichen Anwendung zusammen, also
-%  * Zielgruppe Studenten, Doktoranden, Wissenschafter, als Lehrmaterial allgemein oder für effizientere Forschung
-%  * Review-Prozesse
 %
 % So eine Ontologie könnte es erlauben Daten und Code so zu verweben, dass man gut anbieten kann anstelle der geschützten Daten einen offenen Zwischendatensatz zu verwenden, mit dem weitergerechnet werden kann oder so....
 %
@@ -859,13 +895,6 @@ The material could help learn and understand research in practice
 % Input für eine Data and Code Ontologie
 %
 
-
-% Future work will be on that ontology too (name "data and code ontology"?)
-% app scenario, for students, researchers, reviewers
-% responsibility of libraries to catalog these items (restore model instances, instances of that ontology)
-% archives should pick up the resources and apply restore model, if not ours then another one that is as effective
-
-% dabei berücksichtigen wir bereits aufgestellte anforderungen
 
 %
 % Anforderungen aus Economics und Social Sciences zur Verbesserung der Reproduzierbarkeit
@@ -890,7 +919,6 @@ that give requirements for an ontology that organizes the data and code resource
 % Gentleman: "important, if not essential, to integrate the computations and code used in data analyses,...."
 \cite{gentleman2007statistical}
 
-% habs nicht gelesen, geht aber direkt mit reproduzierbarkeit los. muessen mal sehen was die da an guidelines reinbringen, deckt sich bestimmt mit den anderen
 % Reporting guidelines for simulation-based research in social sciences
 \cite{rahmandad2012reporting}
 
@@ -907,18 +935,10 @@ that give requirements for an ontology that organizes the data and code resource
 
 
 
-Scalability needs to be tested. If the idea is rolled out to the archives, would the servers with billions of IDs scale?
-% db: ich bin da nicht wirklich skeptisch, aber die frage muss schon mal rein
-% db: naja, das ist schon ganz schön heavy, was da an ID-Mengen entsteht. Wir sollten einfach einräumen, dass wir auf die Frage noch keine Antwort haben
-%However the scalability question also applies for all the other RDF approaches in OpenGov, LOD etc, see billion triple challenge
 
 
 
 
-We invite the reader to take a look at the sources for this publication and form her own opinion.\footnote{\url{https://github.com/dbahls/ddocks}}
-% The final version of the paper will be using Sweave, for which the sources will be available as well. \footnote{\url{https://github.com/dbahls/paper-src}}
-% db: die müllige revision history braucht man ja nicht in die welt schreien  ; )
-% We used Sweave for this publication ourselves and invite you to make your own thoughts
 
 
 \balancecolumns
