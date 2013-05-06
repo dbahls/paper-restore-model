@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri Jan 11 11:14:36 CET 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=JAE-RER.tex
+outputFile=JAE-RER.pdf
+langSpell=en
+markDer=true
+srcDir=
