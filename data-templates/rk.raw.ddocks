@@ -2,7 +2,7 @@
 <ddocks-header>
 
 @tokens	<	>
-@namespace	demoArchive	http://demoarchive.demo/data/	http://localhost:8090/openrdf-sesame/repositories/koenkerzeileis_v1
+@namespace	demoArchive	http://demoarchive.demo/data/	http://lod.gesis.org/sweavelod/sparql
 
 </ddocks-header>
 <demoArchive:MA>	<demoArchive:MQ>	<demoArchive:Mg>	<demoArchive:Mw>	<demoArchive:NA>

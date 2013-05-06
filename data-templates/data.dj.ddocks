@@ -2,7 +2,7 @@
 <ddocks-header>
 
 @tokens	<	>
-@namespace	demoArchive	http://demoarchive.demo/data/	http://localhost:8090/openrdf-sesame/repositories/koenkerzeileis_v1
+@namespace	demoArchive	http://demoarchive.demo/data/	http://lod.gesis.org/sweavelod/sparql
 
 </ddocks-header>
 NUMBER NONOIL INTER OECD GDP60 GDP85  GDPGRO  POPGRO   IONY    SCHOOL  LIT60
