@@ -158,7 +158,7 @@ One goal is to enable data publication in difficult settings.
 %BZ: "this research" koennte verwechselt werden mit der research, die reproduzierbar sein soll. wie waers mit "our goal is to enable ..."
 Moreover, we show how the gaps between data citation and code integration can be closed as to eliminate all manual efforts of arranging code and data for reproduction attempts. 
 On this basis, we develop the requirements for a data restore model and elaborate a generic design in view of an overall data management infrastructure.
-We further present a proof of concept implementation on the basis of a real-world example from economics.
+We further present an experimental implementation on the basis of a real-world example from economics.
 Eventually we close with the vision of a data and code ontology that carries statistical models from paper to a re-usable semantic level.
 
 
@@ -439,7 +439,7 @@ But recently, as a result of the Open Data movement a large degree of data sets 
 %
 
 % panton principles
-\cite{murray2010panton}
+%\cite{murray2010panton}
 
 % CKAN muss auch noch irgendwo rein
 % das ist doch aber immer open data.
@@ -512,7 +512,7 @@ In this section, we first develop the requirements for a data restore model.
 Subsequently, we elaborate a generic design and discuss its implication on an overall data mangement infrastructure and the workflows involved.
 
 
-\subsection{Requirements}
+\subsection{Requirements}\label{sec:req}
 
 Whichever data management solution is applied eventually, it should fit to the researchers' workflows and practices in order to be effective and accepted hence.
 \cite{Feijen_2011} 
@@ -614,10 +614,11 @@ The data content is more accessible and interpretable to machines which sets the
 Our approach is based on the concept of assigning individual IDs to every single value of a data set.
 %BZ: Das ist notwendig, da man nicht das dataset als ganzen restoren moechte, sondern ja gerade die einzelnen data values benoetigt, um ggf. berechnungen nachvollziehen zu koennen. Bekomm das jetzt grad nicht griffig formuliert...
 The number of IDs needed is certainly high and questions of scalability might rise immediately.
-To give an estimation on the technical implications, the number of additional triples needed is twice the number of data values, or the same number only if linking with other semantic resources is not made use of.
+To give an estimation on the technical implications, the number of additional triples needed is twice the number of data values, or the same number only if not linked with other semantic resources.
 Maintenance could be supported with tools and there should not be any additional efforts, provided that the data is maintained in a structured representation already.
 %BZ: what tools?
 However, we would like to have a discussion on this naïve approach and leave the investigation of scalability for now.
+This could also help solve some of the problems in using linked data for scientific purposes. \cite{bechhofer2010linked}\footnote{The problem of precise data references has been recognized by the Semantic Statistics community as well \url{http://datalift.org/en/event/semstats2013}.}
 
 
 %As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set could be referenced from any context (\textit{Tracability}).
@@ -641,14 +642,15 @@ The advantage in the latter case is that this procedure could be embedded within
 The researcher simply submits code and data templates used, and other researchers can rerun the same analysis without any manual arrangements or collection of resources, simply by executing the code.
 
 
-In case the researcher used own data, the data would have to be submitted to the dedicated archive first where the respective data template and its IDs involved are generated first.
+In case the researcher used own data, the data would have to be submitted to an affiliated archive\footnote{Researchers have to archive their data, either locally or at another archive. By "affiliated archive" we denote this repository.} first where the respective data template and its IDs involved are generated first.
 The archive returns the template to the researcher who can then publish it in the same way as described above.
 This procedure must be supported with tools for mapping and generation of IDs.
 Furthermore, these tools should provide for further semantic annotation of the content (using the RDF Data Cube Vocabulary for example) so that documentation about the data is available as well.
+Figure \ref{fig:modelprocessing} outlines the overall process.
 
 
-Figure \ref{fig:modelprocessing} outlines the overall process and suggests roles and responsibilities for archives and digital libraries.
-The data itself would be maintained at the archives where Web Services provide access to up-to-date information and, if the policies allow, to its contents.
+%Figure \ref{fig:modelprocessing} outlines the overall process and suggests roles and responsibilities for archives and digital libraries.
+%The data itself would be maintained at the archives where Web Services provide access to up-to-date information and, if the policies allow, to its contents.
 %Data templates and source code resources behind a scientific article could be maintained at the library
 
 
@@ -693,7 +695,7 @@ Using the \refmodel
 
 %\section{A case study - Two real world examples}
 %\section{An example from the economics}\label{sec:impl}
-\section{Proof of Concept}\label{sec:impl}
+\section{Experimental Implementation}\label{sec:impl}
 
 %We have implemented
 In this section, we present a prototype implementation of the data restore model and a plugin called \textit{ddocks}\footnote{\textit{ddocks} is short for data docks which is meant to reflect the ``transshipment" character of the interface between data retrieval and processing.} 
@@ -798,7 +800,7 @@ Researchers could embed these calls within their source code to load the data by
 \subsection{Validation}
 
 
-
+We validate this experimental implementation with respect to the requirements developed in Section \ref{sec:req}.
 As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set could be referenced from any context (\textit{Tracability}).
 The requirement item \textit{Curation} is addressed as well, because data can be referenced with precision and maintenance of every data can be done in one place. 
 Since the use of RDF allows us to add an additional link between ID and value, we can separate the two and disclose all information about the data in very detail in machine-understandable form, and yet protect the values (\textit{Protection}).
