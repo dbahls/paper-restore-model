@@ -133,13 +133,14 @@ Klaus Tochtermann\\
 
 
 Researchers are more and more requested to publish their scientific data sets for purposes of transparency, re-use, and reproducibility.
-Particularly in economics and the social sciences, researchers often use sensitive statistical data that underlies protection policies that inhibit distribution to third party archives.
-In addition, a substantial quantity of data sets is combined from one or more external providers, which easily complicates curation-related activities. %---when working with data copies
-These circumstances give us reason to pursue a data restore model based on fine-grained referencing that allows to trace data provenance to the original archive in charge of curation.
-One goal is to enable data publication in difficult settings.
-Moreover, we show how the gaps between data citation and code integration can be closed as to eliminate all manual efforts of arranging code and data for reproduction attempts. 
-On this basis, we develop the requirements for a data restore model and elaborate a generic design in view of an overall data management infrastructure.
-We further present an experimental implementation on the basis of a real-world example from economics.
+Particularly in economics and the social sciences, researchers often use sensitive statistical data that underlie protection policies which inhibit distribution to third party archives.
+In addition, a considerable quantity of data sets combines data from one or more external providers, which complicates the setting for curation-related activities. %---when working with data copies
+These circumstances give us reason to pursue a \textit{data restore model} on the basis of fine-grained referencing that allows to trace data provenance to the original archive in charge of curation.
+%One goal is to enable data publication in difficult cases.
+%Moreover, we show how the gaps between data citation and code integration can be closed as to eliminate all manual efforts of arranging code and data for reproduction attempts. 
+One goal is to enable data publication in difficult cases, and another one is to show how the gaps between data citation and code integration can be closed in order to eliminate all manual efforts of arranging code and data files for reproduction attempts. 
+On this basis we develop the requirements for a data restore model and elaborate a generic design in view of an overall data management infrastructure.
+We further explore an experimental implementation which we validate by taking the example of a real-world publication in economics.
 Eventually we close with the vision of a data and code ontology that carries statistical models from paper to a re-usable semantic level.
 
 
@@ -170,9 +171,8 @@ Eventually we close with the vision of a data and code ontology that carries sta
 Repeatability of research results is a fundamental criterion in science. % experiments are conducted in different environments and by different persons as to validate whether the results depend on considered parameters only.
 Experiments must lead to the same findings when conducted by other persons or in other environments, under the premise of keeping relevant and considered parameters constant.
 % sciencemag article on "Reproducible research in computational science"
-In computational research, this remains unverified in many cases due to various reasons.
-\cite{peng2011reproducible}
-One of them is the plain fact that the supporting data often is unavailable to others which gives rise for a more organized and open data management practice. \cite{Wood1298248}
+In computational research, this remains unverified in many cases due to various reasons \cite{peng2011reproducible}.
+One of them is the plain fact that the supporting data is often unavailable to others which gives rise for a more organized and open data management practice \cite{Wood1298248}.
 While a scientific publication is commonly understood as synonymous with a peer-reviewed article alone, program code and data take the role of nice-to-have additional material only that rarely find their way to the public.
 %There are numerous examples of research publications that turned out inconsistent eventually, either because of mistakes,  
 %There are numerous examples of inconsistent research  that illustrate how 
@@ -186,10 +186,10 @@ The problem might be less significant in technical domains where relevant theori
 Decision makers in public sector and industry, however, often rely on surveys and studies which do not necessarily have to stand proof when made use of. 
 The case of a research study on cultural integration of immigrants in the UK  
 shows that inconsistencies occur in the social sciences as well.
-The data was available to the community \cite{dataset_FNSEM} which allowed other researchers to investigate and after all heavily criticize their publication as its results could not be reproduced. \cite{arai2011fragile}
+The data was available to the community \cite{dataset_FNSEM} which allowed other researchers to investigate and after all heavily criticize their publication as its results could not be reproduced \cite{arai2011fragile}.
 To underscore their critique, they published the source code of their own analyses online and in this way called for clarification. % and revealed their difficulties in replicating.
 The original authors responded with an errata in which they acknowledged the faults.
-At the same time, they presented a modified version of the statistical model they had applied and managed to produce the previous findings again while admitting that ``the results are now less clear-cut and [they lost] statistical significance''. \cite{bisin2011errata} 
+At the same time, they presented a modified version of the statistical model they had applied and managed to produce the previous findings again while admitting that ``the results are now less clear-cut and [they lost] statistical significance'' \cite{bisin2011errata}.
 %
 % btw, the paper is not retracted. the authors did not highlight anywhere around the homepage that there was an issue. they simply list the errata as another publication and that's it.
 % it has 58 citations as of today, and the errata is not cited once at all.
@@ -202,9 +202,7 @@ Yet, when it comes to analyses and the methods applied, textual reports typicall
 Altogether, the media type itself seems rather unsuitable for this purpose, which is why there are many voices in the scientific community promoting the idea of program code to be included as substantial artefacts along with the article.
 In this sense, some researchers even view source code as the main contribution.
 This viewpoint is often referred to as the \textit{Claerbout principle}:
-"An article about computational science in a scientific publication is not the scholarship itself, it is merely advertising of  the scholarship. The actual scholarship is the complete software development environment and the complete set of instructions which generated the figures."
-\cite{Buckheit1995b}
-\cite{de2001reproducible}
+"An article about computational science in a scientific publication is not the scholarship itself, it is merely advertising of  the scholarship. The actual scholarship is the complete software development environment and the complete set of instructions which generated the figures" \cite{Buckheit1995b} \cite{de2001reproducible}.
 In support of this view \cite{KoenkerZeileis2009} investigated reproducibility in econometrics and pointed out how software tools can be used to organize data, code, and documentation in this domain.
 As part of a replication study they have also shown that important details are missing in the two example papers examined and filled in the blanks by publishing source code and data of the eventually successful replication attempts.
 
@@ -229,29 +227,32 @@ which can be understood as a problem of insufficient documentation.
 
 
 With the increasing use of statistics software \cite{RePEc_hum_wpaper_sfb649dp2011_020}
-these problems emerge in the domain of empirical research in general where more and more statisticians promote the use of literate programming techniques  
+these problems emerge in empirical research in general where more and more statisticians promote the use of literate programming techniques  
 % Executable Papers for the R Community: The R2 Platform for Reproducible Research
 \cite{leisch2011executable}
 % literate statistical practice (reproducibility and documentation)
 \cite{rossini2003literate}
-as to combine report text and coding in single executable scripts so that basic documentation of the analyses is already given naturally.
+%as to combine report text and coding in single executable scripts so that a basic documentation of the analyses is already given naturally.
+which combine report text and coding in single executable scripts in a way that clarifies the link between research code, the figures produced, and the findings naturally.
 In both of the examples above, the authors made use of the literate programming tool Sweave \cite{lmucs_papers_Leisch_2002} 
-so that the report can be generated again from data processing to generating the report document, under the premise that the data set is given and the system environment allows for correct execution.
+so that their reports can be generated again, from data processing to generating the report document, under the premise that the data is given and the system environment allows for correct execution.
 
 
-However, empirical research is often based on sensitive data that cannot be shared easily.
-A general solution to this problem is to transform such data sets into anonymized public-use files that can be distributed without infringements of data protection.
+%However, 
+Empirical research is often based on sensitive data that cannot be shared easily.
+%A general solution to this problem is to transform such data sets into anonymized public-use files that can be distributed without infringements of data protection.
+One solution to this problem is to transform such data into anonymized public-use files that can be distributed without infringements of data protection.
 But doing so requires careful verification in terms of cell sizes and de-anonymization and requires additional efforts, often on the researchers' side.
 Moreover, researchers hesitate to publish their own data if incentives are not clear, especially when they had a lot of work producing it.
-In addition, data is often obtained from several sources and the mere citation of them does not give any details on the file formats used or way of composition as used for input for the computer program.
+In addition, data is often obtained from several sources and the mere citation of them does not give any details on the file formats used or way of composition as used as input for the computer program.
 %BZ: hier kommst du wieder zurueck zu den daten (wenn auch mit anderem schwerpunkt), nachdem das thema oben eigentlich abgehakt wirkte und du zum thema program code und danach zu provenance gegangen bist. sollte dieser abschnitt ueber sensitive data nicht zu dem data abschnitt weiter oben? gehoert ja irgendwie schon zusammen, oder?
 
 
 %These circumstances motivate our efforts to elaborate on a holistic solution for the statistical domain that enables the exact reconstruction of individual research data sets as were used by the researchers.
-In this paper we aim to overcome these challenges for the domain of statistical data and elaborate on a holistic solution that enables the exact reconstruction of individual research data sets as were used by the researchers.
+In this paper we aim to overcome these challenges for the domain of statistical data and elaborate on a holistic solution to enable the exact reconstruction of individual research data sets as used originally by a researcher.
 We pursue the idea of a \emph{data restore model} that is based on fine-grained data referencing as described in earlier works \cite{BahlsTochtermann_2012}
 where further background and motivation is explained more thoroughly.
-As this referencing technique can be viewed as means for precise citation, the linkup to provenance and further documentation on the particular data version is given which again contributes to clarity.
+Since this referencing technique can be viewed as means for precise citation, the linkup to provenance and further documentation on the particular data version is given which again contributes to clarity.
 The idea is to equip researchers with means that make full transparency possible even in difficult settings of protected and distributed data sources, so that reconstruction remains a question of access permission only.
 The restore model is designed to bridge the gaps between data citation and program code and to seamlessly integrate with preferred research tools, so that no further manual work is required in setting up data and code resources for replication attempts.
 Eventually, the goal is to provide researchers with the ability to close all missing links from data sources and processing to figure plotting and report generation as to create trust in their findings which from another perspective could be an incentive to do so.
@@ -280,8 +281,8 @@ Finally, we conclude in Section \ref{sec:outlook} with summary and outlook on fu
 
 % stichpunkte, was hier noch rein kann
 % da muss man mal sehen, ob das wirklich alles rein muss
-The problem of reproducibility in computational research is addressed by many.
-If re-execution of experiments is the goal, it is necessary to capture information on the entire system environment used as to make sure respective processes can be performed under the same parameters.
+The problem of reproducibility in computational research has been addressed by many.
+If re-execution of experiments is the goal, it is necessary to capture information on the entire system environment used in order to make sure respective processes can be performed under the same parameters
 %
 % preservation of digital objects and processes (problems with system environments)
 %
@@ -290,9 +291,10 @@ If re-execution of experiments is the goal, it is necessary to capture informati
 % preservation of processes and digital objects
 \cite{DBLP_conf_ercimdl_Rauber12}
 \cite{Rechert_2010_EBS_1816123_1816182}
+.
 %\cite{Guttenbrunner_2012_MFE_2180868_2180876}
 %This alone is already a very hard problem, because it must include hardware and software dependencies to very detail.
-This alone is already a very hard problem, because the chain of dependencies in terms of hardware and software has to be captured and restored to the very detail.
+This alone is a very hard problem already, because the chain of dependencies in terms of hardware and software has to be captured and restored to the very detail.
 In this regard, \cite{Schwab_2000_MSC_369545_369555} illustrates how the problem of software dependencies for computational research could be solved with the help of build scripts such as make files.
 Nevertheless, the achievements in this area seem promising, and the opportunities for application such as  
 %
@@ -306,10 +308,10 @@ Nevertheless, the achievements in this area seem promising, and the opportunitie
 are great. % todo: echt beknackte formulierung
 %BZ: wie waers mit:
 %Nevertheless, the achievements in this area and the opportunities for application such as \cite{Nowakowski2011608} seem promising.
-As the goal of our research is to find means for precise reconstruction of data sets and direct integration with program code, these approaches form a good complement. % todo: formulierung   
+As the goal of our research is to find means for precise reconstruction of data sets and direct integration with program code, these approaches make a good complement. % todo: formulierung   
 %BZ: As we aim to find means for precise reconstruction of data sets and direct integration with program code, the approaches complement each other.
 
-Particularly for the domain of empirical research, we found the literate programming approach very appealing, as it seems light-weight and suitable for less complex scenarios that can be handled with a single script.
+Particularly for the domain of empirical research, we found the literate programming approach very appealing as it seems light-weight and suitable for the many, less complex scenarios.
 It interweaves source code and text for the report, so that all processing steps are already quite well-documented. 
 %Approaches like \cite{lmucs_papers_Leisch_2002} prove that the reproduction of research results is technically feasible, but there are still challenges that hinder this process: 
 %Literate programming approaches like Sweave \cite{lmucs_papers_Leisch_2002} or Knitr\footnote{\url{http://yihui.name/knitr/}} are suitable for the reproduction of research results. 
@@ -342,27 +344,27 @@ and therefore suitable for the reproduction of research results.
 
 
 
-Source code for computational research does not need to be executable in order to make a valuable resource for transparency,
-as it is a detailed documentation of the processing already and a valuable resource as such, which is part of the argumentation in 
+Source code for computational research does not need to be executable in order to make a valuable contribution to transparency
+as it is a detailed documentation of the processing and a valuable resource as such, which is part of the argumentation in 
 % all these resources should have an identifier, as the title suggests
 % they won the executable paper challenge, although it is not executable. it says quite something
 %
 % verifiable computational research
 %
 \cite{gavish2011universal}.
-The Verifiable Computational Research community aims to collect data, code and intermediate results of research processes as a trace to make the findings verifiable.
-Their automatic capturing process is integrated with the researchers' workflow, and therefore successful as well as unsuccessful attempts can be reviewed eventually. 
+The Verifiable Computational Research community aims to collect data, code and intermediate results of research processes as a trace to make findings verifiable.
+Their automatic capturing process is integrated with the researchers' workflow, and hence successful as well as unsuccessful attempts can be reviewed eventually. 
 %However, the VCR community argues that the source code does not have to be executable, source code as a detailed documentation of the processing suffices, and other intermediate results should be captured, so that the research is tracable and verifiable.
 We share their view in a pragmatic sense. The code does not need to be executable, if it is, the better. % todo: formulierung 
 %BZ: Ich wurde den letzten teil ab "if it is" einfach streichen...
-Either way, source code should be picked up as part of the publication material whenever possible.
+Either way, source code should be picked up as part of the publication material whenever possible
 %
 % source code is important 
 %
 % * for replicability not only data itself, but also program code, e.g. of mathematical calculations, is necessary
 %
 % science code manifesto
-\cite{barnes2012science}\footnote{\url{http://sciencecodemanifesto.org/}}
+\cite{barnes2012science}\footnote{\url{http://sciencecodemanifesto.org/}}.
 
 
 %------------------------------------
@@ -450,30 +452,29 @@ But recently, as a result of the Open Data movement a large degree of data sets 
 
 \section{The Data Restore Model}\label{sec:datareferencing}
 
-In this section, we first develop the requirements for a data restore model.
+We begin this section by developing the requirements for a data restore model.
 Subsequently, we elaborate a generic design and discuss its implication on an overall data mangement infrastructure and the workflows involved.
 
 
 \subsection{Requirements}\label{sec:req}
 
-In the following, we want to develop the ideas of a referencing technique and take into account the recommendations \textit{(A-J)} fromulated by \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} which we refer to using angle brackets.
-Whichever data management solution is applied eventually, it should fit to the researchers' workflows and practices in order to be effective and accepted hence.
-\cite{Feijen_2011} 
+In the following, we want to develop the ideas of a referencing technique and take into account the recommendations fromulated by \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} which we refer to using parentheses \textit{(A-J)}.
+Whichever data management solution is applied eventually should fit to the researchers' workflows and practices in order to be effective and thus accepted \cite{Feijen_2011}.
 In the ideal case, researchers can use their preferred tools with no further hassle preparing anything at the time of data submission.
 %  (assisting tools to reduce efforts)
 %
 %On the side of reuse, there should not be any unnecessary efforts in re-using these resources either, meaning that no puzzling and manual tinkering in organizing data and code to make it run.
-On the side of reuse, there should not be any efforts needed in composing and organizing these resources either, meaning that no puzzling and manual tinkering in organizing data and code to make it run is required \textit{(F partly)}.
+On the side of reuse, there should not be any efforts in composing and organizing these resources either, meaning that no puzzling and manual tinkering in organizing data and code is required to make it run \textit{(F partly)}.
 Location and structure of data files on the local file system should be inherently specified, so that it integrates perfectly with the code.
 \footnote{In this regard, software and system specifications are as important. This kind of documentation can be organized independent of the issues addressed in this paper, we therefore do not further address it here.}
   
 There are plenty of prevailing file formats, ranging from CSV, XML, Excel, entire RDBMS dumps to specific software-dependent and even unknown individual ``raw" types of formats.
-McCullough et al. recommend the use of ASCII encoding \textit{(D)} as to support re-usability, we therefore want to exclude binary formats from our discussion.
-As to be less restrictive and support more contemporary encodings such as UTF-8, we want to pursue the idea of using self-describing documents with information on its own encoding contained.
+McCullough et al. recommend the use of ASCII encoding \textit{(D)} for the benefit of re-usability, we therefore want to exclude binary formats from our discussion.
+As to be less restrictive and support more contemporary encodings such as UTF-8, we want to pursue the idea of self-describing documents with information on its own encoding contained.
 \footnote{Otherwise, data would need to be converted back and forth which causes trouble whenever a character has no representation in the ASCII standard}
-However, a format-independent solution should be found whereas most importantly, any restored data set must equal the original as to perfectly integrate with the code in the end \textit{(E)}. 
+A format-independent solution should be found whereas most importantly, any restored data set must equal the original as to perfectly integrate with the code in the end \textit{(E)}. 
 % which gives us a clear (requirement for successful) test case
-Thus, we note that data citation by persistent identifier (as is the current practice in data publishing) is not sufficient in this regard, since these identifiers point to data sets on a more abstract level only and do not distinguish or specify a particular format.
+Thus, we note that data citation by persistent identifier (as is the current practice in data publishing) is not sufficient for this purpose, since these identifiers point to data sets on a more abstract level only and do not distinguish or specify a particular format.
 \footnote{Most data agencies offer download in various formats while the content is filed under the same persistent identifier.}
 
   
@@ -483,7 +484,7 @@ Nevertheless, we want to make the point that the spectrum from open to protected
 Whether or not a data set can be handed out should be a question on legal level only, the restore technique itself, however, should cater for these cases as to give means for repeatability in every scenario.
 % später nochmal aufgreifen: meta data von protected data sharen. man kann wenigstens herausfinden, dass es diese daten gibt
 
-Either way, pointers to the provenance of the data used should be available that give documentation and further background such as contact information to creators and curators for any version being used.
+Either way, pointers to the provenance of data should be available that give documentation and further background such as contact information for any version being used.
 While new persistent identifiers are commonly given for major data updates and releases only, those versions with minor bug-fixes cannot be referred to with precision so far.\footnote{Surely, an author can give a note on the time of data download or acquisition in the paper. This is rarely practiced, and data reconstruction in this case again involves vagueness and human efforts.}
 %A common practice is to assign new persistent identifiers to major data updates while those versions with minor bug-fixes cannot be referred to so far.\footnote{Surely, an author can give a note on the time of data download or acquisition in the paper. This is rarely practiced, and data reconstruction in this case again involves vagueness and human efforts.}
 %It is also to consider that new persistent identifiers are given for major data updates only while those versions with minor bug-fixes cannot be referred to with precision so far.\footnote{Surely, an author can give a note on the time of data download or acquisition in the paper. This is rarely practiced, and data reconstruction in this case again involves vagueness and human efforts.}
@@ -494,10 +495,10 @@ Depending on regulations, the actual data content identified by a given model in
 \footnote{Authentication can be realized using SSL for example. If transfer via internet is considered too insecure, the API can be used to collect data requests as such and to initiate the procedure according to the respective policies.}
 
 
-In contrast to the copy-based approach, the referencing technique allows data and documentation to be maintained at one responsible archive only, so that no duplicate efforts have to be made regarding data curation which is particularly relevant in cases where several external data sources were used.
-This improves quality of service as all enquiries about the data can be answered with the highest possible level of expertise available and gives a clear view on responsibilities in addition.
+In contrast to the copy-based approach, the referencing technique allows data and documentation to be maintained at one responsible archive only, with the result that no duplicate efforts have to be made in terms of data curation which is particularly relevant in cases where several external sources were used.
+This improves quality of service as all enquiries about data can be answered with the highest possible level of expertise available and gives a clear view on responsibilities in addition.
 
-As a result from this discussion we formulate the following requirements for the data restore model:
+As a result of this discussion we formulate the following requirements for the data restore model:
 
 
 
@@ -510,11 +511,15 @@ As a result from this discussion we formulate the following requirements for the
 %  \item The technique must be applicable to protected or closed data as well.
   \item \textbf{Protection:} The model must be applicable for protected data (closed data) as well, in strict accordance with secured protection.
  
-  \item \textbf{Curation:} The technique makes possible that data could be maintained and curated at those archives only that are responsible of maintenance with the required level of expertise.
+%  \item \textbf{Curation:} The technique makes possible that data could be maintained and curated at those archives only that are responsible of maintenance with the required level of expertise.
+%  \item \textbf{Curation:} The technique makes possible that data maintenance and curation needs to be done for the original copy only, right at the responsible archive, whereas harvesting techniques work efficiently 
+  \item \textbf{Curation:} Using the model, data maintenance and curation needs to be done for the original copy only, right at the responsible archive, whereas documentation can be distributed efficiently on the basis of harvesting techniques.
+
   
   % das ist vielleicht etwas hart formuliert
 %  \item Researchers are not disturbed by the introduction of technical hinderances such as new data formats or other obligations.
-  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and suit to their preferred data formats. 
+%  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and suit to their preferred data formats. 
+  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and comply with their preferred data formats. 
 		% It should be independent of any particular data format. % kann man das so reinschreiben, klingt jedenfalls komisch
   
   % auch soll es möglichst einfach auf neue unbekannte Datenformate anwendbar sein, mitunter um zukunftsfähig zu sein
@@ -522,7 +527,8 @@ As a result from this discussion we formulate the following requirements for the
 
   % verwendung von ids macht das ganze glasklar. kann man als argument gegenueber query-approach anbringen, wenn wir wollen 
 %  \item It should be simple and transparent, so that problems can be traced easily. % mit hilfe der direkten pointer ist alles gestochen scharf und einfach zu debuggen (?)
-  \item \textbf{Tracability:} The technique itself must be transparent, so that problems can be traced and questions can be answered efficiently.
+%  \item \textbf{Tracability:} The technique itself must be transparent, so that problems can be traced and questions can be answered efficiently.
+  \item \textbf{Traceability:} The technique itself must be traceable, so that references to data content can be followed efficiently, by humans and machines.
  %wenn du mit traceable meinst, dass zb berechnungen auf den daten nachvollziehbar sein sollen, dann wuerde ich hier auf jeden fall die ids nennen. transparent ist hier dann als begriff zu allgemein.
  
 %  \item overall, it has to meet the constraints and requirements from all parties involved in the overall data management infrastructure, such as archives, researchers and libraries. % was vergessen? und not openly available data = closed data? 
@@ -531,6 +537,10 @@ As a result from this discussion we formulate the following requirements for the
 
 \end{enumerate}
 
+
+
+
+
 %------------model--------
 \subsection{Designing the model}
 %\subsection{ID-per-Value Approach}
@@ -538,18 +548,18 @@ As a result from this discussion we formulate the following requirements for the
 
 The requirements can be realized in several ways.
 However, format-independent reconstruction of individual data files requires a mechanism that renders data content into any unknown or unspecified structure.
-The referencing technique implies that data slices of larger data sets can be identified and selected precisely, from global scope.
+The referencing technique implies that data slices of larger data sets can be identified and selected with precision, from global scope.
 Pointers to respective repositories in combination with SQL, SPARQL or other kinds of queries could be a solution.
-A challenge in this approach is that such queries produce result sets in the shape of tables which yet need to be transformed to this unspecified format.
+A challenge in this approach is that such queries produce result sets in the shape of tables which yet need to be transformed into this unspecified format.
 Whereas this idea is certainly worth exploring, we want to pursue another approach that fits better into the Semantic Web scheme and recent developments in the Linked Open Data movement.
 
 
 Currently, more and more data sets are released as Open Government data and statistical offices have already explored the use of semantic technologies as well \cite{Halb_LDOW08}.
 %BZ: Hier suche ich noch ein, zwei Referenzen raus, die zusammen mit Halb_LDOW08 aufgezaehlt werden koennen.
-These technologies break down the separation between black box data bundles and attached metadata as it interweaves data with its documentation.
+These technologies break down the separation between black box data bundles and attached metadata as they interweave data with its documentation.
 %BZ: These technologies break not only down the separation between black box data bundles (the raw data) and attached metadata as it interweaves data with its documentation.
 %BZ: They also enable the publication, sharing and interlinking of data.
-The data content is more accessible and interpretable to machines which sets the stage for a variety of new applications, e.g. for data retrieval. \cite{BahlsTochtermann_2012}
+The data content is more accessible and interpretable to machines which sets the stage for a variety of new applications, e.g. for data retrieval \cite{BahlsTochtermann_2012}.
 %BZ: das wesentliche fuer unseren approach ist hier eigentlich gesagt, alles andere wuerde wohl eher in die related work passen, oder? wuerde diesen absatz mit dem folgenden zusammenfassen.
 
 Our approach is based on the concept of assigning individual IDs to every single value of a data set.
@@ -559,23 +569,25 @@ To give an estimation on the technical implications, the number of additional tr
 Maintenance could be supported with tools and there should not be any additional efforts, provided that the data is maintained in a structured representation already.
 %BZ: what tools?
 However, we would like to have a discussion on this naïve approach and leave the investigation of scalability for now.
-This could also help solve some of the problems in using linked data for scientific purposes. \cite{bechhofer2010linked}\footnote{The problem of precise data references has been recognized by the Semantic Statistics community as well \url{http://datalift.org/en/event/semstats2013}.}
+
+We introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values.
+This could also help solve some of the problems in using linked data for scientific purposes \cite{bechhofer2010linked}\footnote{The problem of precise data references has been recognized by the Semantic Statistics community as well \url{http://datalift.org/en/event/semstats2013}.}.
 
 
 
 \subsection{Workflows}
 
 
-If implemented in big scale as a holistic information infrastructure for statistical research data management, the presented approach has further implications on workflows and gives ideas for a big picture.
+If implemented in big scale as a holistic information infrastructure for research data management in statistics, the presented approach has further implications on workflows and gives ideas for a big picture.
 Data archives could offer the download of data templates along with the actual data, so that researchers have the precise references right from the beginning of their research.
-Alternatively, researchers could pull the data on the basis of such data template from within their research tool, provided that a respective plugin is available.
-The advantage in the latter case is that this procedure could be embedded within their program code, so that no further modifications of data and code need to be done at the time of publishing.
-The researcher simply submits code and data templates used, and other researchers can rerun the same analysis without any manual arrangements or collection of resources, simply by executing the code.
+Alternatively, researchers could pull the data on the basis of these data templates alone from within their research tool, provided that a respective plugin is available.
+The advantage in the latter case is that this procedure could be embedded within their program code and no further modifications on data and code need to be done at the time of publishing.
+The researcher simply submits code and data templates, and other researchers can rerun the same analysis without any manual arrangements or collection of resources, simply by executing the code.
 
 
-In case the researcher used own data, the data would have to be submitted to an affiliated archive\footnote{Researchers have to archive their data, either locally or at another archive. By "affiliated archive" we denote this repository.} first where the respective data template and its IDs involved are generated first.
+In case the researcher used own data, the data would have to be submitted to an affiliated archive\footnote{Researchers have to archive their data, either locally or at another archive. By "affiliated archive" we denote this repository.} in beforehand where the respective data template and IDs involved are generated first.
 The archive returns the template to the researcher who can then publish it in the same way as described above.
-This procedure must be supported with tools for mapping and generation of IDs.
+This procedure must be supported with tools for mapping and ID generation.
 Furthermore, these tools should provide for further semantic annotation of the content (using the RDF Data Cube Vocabulary for example) so that documentation about the data is available as well.
 Figure \ref{fig:modelprocessing} outlines the overall process.
 
@@ -644,8 +656,7 @@ The \textit{ddocks} plugin and a basic validation which are part of the Sweave s
 
 \subsection{Generating the Data Templates}
 
-
-We introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values which solves the requirements of \textit{Equality}.
+%We introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values which solves the requirements of \textit{Equality}.
 The data template contains a header section in which we can specify encoding and tokens that are used to identify IDs within the template.
 In addition, we also declare Web Service addresses for every namespace used (which is only one for our example) under the pragmatic assumption that every archive provides one such Web Service for data enquiries only.
 %At this point, we do not want to elaborate on the Web Service interface, however, we have used SPARQL endpoints in the proof of concept implementation presented in Section \ref{sec:impl}.
@@ -670,7 +681,7 @@ Figure \ref{fig:datatemplate} shows an excerpt from one of the two data template
 \caption{
 %Excerpt from one of the data templates
 %Data template excerpt from one of the data templates
-Data template for one of the two data sets \textit{rk.raw}
+Data template for one of the two data sets (\textit{rk.raw})
 }
 \label{fig:datatemplate}
 \end{figure*}
@@ -736,7 +747,7 @@ Researchers could embed these calls within their source code to load the data by
 
 
 We validate this experimental implementation with respect to the requirements developed in Section \ref{sec:req}.
-As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set could be referenced from any context (\textit{Tracability}).
+As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set could be referenced from any context (\textit{Traceability}).
 The requirement item \textit{Curation} is addressed as well, because data can be referenced with precision and maintenance of every data can be done in one place. 
 Since the use of RDF allows us to add an additional link between ID and value, we can separate the two and disclose all information about the data in very detail in machine-understandable form, and yet protect the values (\textit{Protection}).
 Furthermore, when every value can be referred to from anywhere, a simple technique can be applied to enable format-independent reconstruction of data files for which we introduced the concept of a \textit{data template}.
