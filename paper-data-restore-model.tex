@@ -37,24 +37,7 @@
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{listings}
 
-\newcommand{\conceptual}[1]{
-%\textcolor{RoyalBlue}{#1}
-\texttt{#1}
-}
 
-% TODO: wir sollten noch die Terminologie klï¿½ren. wie bezeichnen wir 
-%
-% * das Prinzip, Werte zu referenzieren:  Bisher nannte ich es Reference Model
-%
-% * so ein Daten-Template, das IDs anstelle von Werten enthï¿½lt: data reference template? ddocks template?
-%
-%
-% Solange das noch nicht so ganz gefunden ist, kï¿½nnen wir einfach diese Tokens verwenden:
-%
-\newcommand{\refmodel}{
-%data reconstruction model
-data restore model
-}
 \newcommand{\datatemplate}{
 data template
 }
@@ -65,8 +48,6 @@ data template
 \input{paper-data-restore-model-concordance}
 
 \title{
-%On the Reproducibility of Statistical Research
-%On the Reproducibility in Computational Statistics
 A Data Restore Model\\
 for Reproducibility in Computational Statistics
 }
@@ -156,7 +137,6 @@ Particularly in economics and the social sciences, researchers often use sensiti
 In addition, a substantial quantity of data sets is combined from one or more external providers, which easily complicates curation-related activities. %---when working with data copies
 These circumstances give us reason to pursue a data restore model based on fine-grained referencing that allows to trace data provenance to the original archive in charge of curation.
 One goal is to enable data publication in difficult settings.
-%BZ: "this research" koennte verwechselt werden mit der research, die reproduzierbar sein soll. wie waers mit "our goal is to enable ..."
 Moreover, we show how the gaps between data citation and code integration can be closed as to eliminate all manual efforts of arranging code and data for reproduction attempts. 
 On this basis, we develop the requirements for a data restore model and elaborate a generic design in view of an overall data management infrastructure.
 We further present an experimental implementation on the basis of a real-world example from economics.
@@ -183,17 +163,15 @@ Eventually we close with the vision of a data and code ontology that carries sta
 
 
 
-
+\newpage
 
 \section{Introduction}
 
 Repeatability of research results is a fundamental criterion in science. % experiments are conducted in different environments and by different persons as to validate whether the results depend on considered parameters only.
 Experiments must lead to the same findings when conducted by other persons or in other environments, under the premise of keeping relevant and considered parameters constant.
-%This is very often not the case in computational research 
 % sciencemag article on "Reproducible research in computational science"
 In computational research, this remains unverified in many cases due to various reasons.
 \cite{peng2011reproducible}
-%One of them is the plain fact that the data on which the research is built often remains unavailable to others which gives rise for a more organized data management practice. \cite{Wood1298248}
 One of them is the plain fact that the supporting data often is unavailable to others which gives rise for a more organized and open data management practice. \cite{Wood1298248}
 While a scientific publication is commonly understood as synonymous with a peer-reviewed article alone, program code and data take the role of nice-to-have additional material only that rarely find their way to the public.
 %There are numerous examples of research publications that turned out inconsistent eventually, either because of mistakes,  
@@ -232,7 +210,6 @@ As part of a replication study they have also shown that important details are m
 
 Both, data and code resources make a valuable contribution if findings are to be reproducible and re-usable in computational research.
 And yet, there is more to be considered.
-%A comprehensive review of the JMCB\footnote{Journal of Money, Credit, and Banking} data+code archive reveals that results cannot be reproduced even when these resources are given.  
 A comprehensive review of the \textit{JMCB\footnote{Journal of Money, Credit, and Banking} data+code archive} reveals that provenance information for the data used is often incomplete and that submitted code does not reproduce the results either.
 It is not uncommon that even the original authors have difficulties understanding the details of their own work only few months after publishing already.
 Apparently, these issues are faced in many other areas of computational research too
@@ -263,7 +240,6 @@ so that the report can be generated again from data processing to generating the
 
 
 However, empirical research is often based on sensitive data that cannot be shared easily.
-%Such data sets can be transformed into anonymized public-use files in general which needs verification in terms of cell sizes and de-anonymization and requires additional efforts, often on the researchers' side.
 A general solution to this problem is to transform such data sets into anonymized public-use files that can be distributed without infringements of data protection.
 But doing so requires careful verification in terms of cell sizes and de-anonymization and requires additional efforts, often on the researchers' side.
 Moreover, researchers hesitate to publish their own data if incentives are not clear, especially when they had a lot of work producing it.
@@ -277,49 +253,25 @@ We pursue the idea of a \emph{data restore model} that is based on fine-grained 
 where further background and motivation is explained more thoroughly.
 As this referencing technique can be viewed as means for precise citation, the linkup to provenance and further documentation on the particular data version is given which again contributes to clarity.
 The idea is to equip researchers with means that make full transparency possible even in difficult settings of protected and distributed data sources, so that reconstruction remains a question of access permission only.
-%We aim to design this referencing technique in a way that allows for seamless integration with preferred research tools and source code, so that no further manual work is required for setting up data and code resources during replication attempts.
-%The restore model is designed to seamlessly integrate with preferred research tools and source code, so that no further manual work is required for setting up data and code resources during replication attempts.
 The restore model is designed to bridge the gaps between data citation and program code and to seamlessly integrate with preferred research tools, so that no further manual work is required in setting up data and code resources for replication attempts.
 Eventually, the goal is to provide researchers with the ability to close all missing links from data sources and processing to figure plotting and report generation as to create trust in their findings which from another perspective could be an incentive to do so.
 On the basis of this data restore model, we elaborate the requirements it carries on the entire information infrastructure between researchers, archives, and libraries.
 
 
-%In this paper we aim to overcome these challenges for the domain of statistical data and elaborate on a holistic solution for an infrastructure that enables reconstruction of individual research data sets. 
-%This infrastructure is basically realized by an underlying data reconstruction model, which builds the bridge between the researchers' preferred software tool and the research data. 
-%The approach follows the idea of a data reconstruction model by which we develop the requirements it carries on an infrastructure.
-%We present an implementation of the model that tries to seamlessly integrate with any software tool preferred by a researcher.
-%By utilizing the model generic ids are assigned to all data values regardless of their original format and their physical location.
-%This allows for reconstructing and referencing the data set out of the researchers programming tool.
-
  
 The remainder of the paper is structured as follows. 
-In section 2 we present a case study with real world examples, where literate programming with research data is applied. 
-Based on these examples we propose a generic data reconstruction model in section 3. 
-We implement and validate our model in section 4. 
-In section 5 we discuss related work relevant to our approach. 
-Finally, we conclude and present future work in section 6.
-%BZ: veraltet. muss man am schluss aktualisieren, wenn das paper steht
+In Section \ref{sec:relatedwork} we discuss related work relevant to our approach. 
+%In section 2 we present a case study with real world examples, where literate programming with research data is applied. 
+%Based on these examples we propose a generic data reconstruction model in section 3. 
+The requirements for a data restore model are elaborated in Section \ref{sec:datareferencing} by which we develop a generic solution that.
+An experimental implementation is presented in Section \ref{sec:impl} where we explore its application in context of a case study from economics.
+%Finally, we conclude and present future work in Section \ref{sec:outlook}.
+Finally, we conclude in Section \ref{sec:outlook} with summary and outlook on future work and present a vision that illustrates the potential of this approach .
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Related Work}
+\section{Related Work}\label{sec:relatedwork}
 
 %argumentation: our tpoic is related to several fields and tries to connect lose ends. topics: general reproducibility, data access and privacy, data referencing/citation
 
@@ -499,12 +451,12 @@ But recently, as a result of the Open Data movement a large degree of data sets 
 \section{The Data Restore Model}\label{sec:datareferencing}
 
 In this section, we first develop the requirements for a data restore model.
-%Subsequently, we elaborate a generic design and outline the big picture of the overall data mangement infrastructure and workflows.
 Subsequently, we elaborate a generic design and discuss its implication on an overall data mangement infrastructure and the workflows involved.
 
 
 \subsection{Requirements}\label{sec:req}
 
+In the following, we want to develop the ideas of a referencing technique and take into account the recommendations \textit{(A-J)} fromulated by \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} which we refer to using angle brackets.
 Whichever data management solution is applied eventually, it should fit to the researchers' workflows and practices in order to be effective and accepted hence.
 \cite{Feijen_2011} 
 In the ideal case, researchers can use their preferred tools with no further hassle preparing anything at the time of data submission.
@@ -512,7 +464,6 @@ In the ideal case, researchers can use their preferred tools with no further has
 %
 %On the side of reuse, there should not be any unnecessary efforts in re-using these resources either, meaning that no puzzling and manual tinkering in organizing data and code to make it run.
 On the side of reuse, there should not be any efforts needed in composing and organizing these resources either, meaning that no puzzling and manual tinkering in organizing data and code to make it run is required \textit{(F partly)}.
-In the following, we want to develop the ideas of a referencing technique and take into account the recommendations \textit{(A-J)} fromulated by \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} which we refer to using angle brackets.
 Location and structure of data files on the local file system should be inherently specified, so that it integrates perfectly with the code.
 \footnote{In this regard, software and system specifications are as important. This kind of documentation can be organized independent of the issues addressed in this paper, we therefore do not further address it here.}
   
@@ -574,7 +525,6 @@ As a result from this discussion we formulate the following requirements for the
   \item \textbf{Tracability:} The technique itself must be transparent, so that problems can be traced and questions can be answered efficiently.
  %wenn du mit traceable meinst, dass zb berechnungen auf den daten nachvollziehbar sein sollen, dann wuerde ich hier auf jeden fall die ids nennen. transparent ist hier dann als begriff zu allgemein.
  
-% zu weich, was heißt das?  
 %  \item overall, it has to meet the constraints and requirements from all parties involved in the overall data management infrastructure, such as archives, researchers and libraries. % was vergessen? und not openly available data = closed data? 
 
   \item \textbf{API:} The data restore model should include pointers to Web Services that provide documentation, contact information or, if applicable, the actual data content upon request.
@@ -612,16 +562,6 @@ However, we would like to have a discussion on this naïve approach and leave th
 This could also help solve some of the problems in using linked data for scientific purposes. \cite{bechhofer2010linked}\footnote{The problem of precise data references has been recognized by the Semantic Statistics community as well \url{http://datalift.org/en/event/semstats2013}.}
 
 
-%As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set could be referenced from any context (\textit{Tracability}).
-%The requirement item \textit{Curation} is addressed as well, because data can be referenced with precision and maintenance of every data can done in one place. 
-%Since the use of RDF allows us to add an additional link between ID and value, we can separate the two and disclose all information about the data in very detail in machine-understandable form, and yet protect the values (\textit{Protection}).
-%Furthermore, when every value can be referred to from anywhere, a simple technique can be applied to enable format-independent reconstruction of data files.
-%We therefore introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values which solves the requirements of \textit{Equality}.
-%The data template contains a header section in which we can specify encoding and tokens that are used to identify IDs within the template.
-%It enables the format-independent solution (\textit{Formats}) as this flexibility allows us to avoid syntactical clashes with the particular data format used.
-%In addition, we also declare Web Service addresses for every namespace used (\textit{API}) under the pragmatic assumption that every archive provides one such Web Service for data enquiries only.
-%At this point, we do not want to elaborate on the Web Service interface, however, we have used SPARQL endpoints in the proof of concept implementation presented in Section \ref{sec:impl}.
-
 
 \subsection{Workflows}
 
@@ -649,7 +589,7 @@ Figure \ref{fig:modelprocessing} outlines the overall process.
 \centering
 \includegraphics[width=.48\textwidth]{img/fig-model-processing.png}
 \caption{
-Using the \refmodel
+Using the data restore model
 }
 \label{fig:modelprocessing}
 \end{figure}
@@ -728,7 +668,9 @@ Figure \ref{fig:datatemplate} shows an excerpt from one of the two data template
 \centering
 \includegraphics[width=.95\textwidth]{img/datatemplate.png}
 \caption{
-Excerpt from one of the data templates
+%Excerpt from one of the data templates
+%Data template excerpt from one of the data templates
+Data template for one of the two data sets \textit{rk.raw}
 }
 \label{fig:datatemplate}
 \end{figure*}
@@ -739,16 +681,12 @@ The simple ontology behind consists of one class only (\textit{DataReference}) a
 Finally, we added these triples to an experimental triple store at GESIS that is presently open to the public.
 Please note that no further semantics were modelled as we wanted to demonstrate the minimal efforts necessary to follow the presented approach.
 
-
 %
+% link to source code
 %
-%\begin{quote}
-
 \url{https://github.com/dbahls/ddocks-utils.git}
-%\end{quote}
 
 
-%For a more detailed view on the implementation, please take a look at the source code.\footnote{\url{https://github.com/dbahls/ddocks} \url{}}
 
 \subsection{The R-Plugin}
 
@@ -784,13 +722,15 @@ and reproduce the data files on the local file system.
 \textit{ddocks} takes these files as a cache and skips when the restore command is run again, so that the data does not have to be reconstructed every time the code is executed.
 %Researchers could embed these calls within their source code to load the data by template at the beginning of their analyses and leave it there without being bothered.
 Researchers could embed these calls within their source code to load the data by template at the beginning of their analyses without being bothered, and no further modifications are needed at the time of publishing.
-%This allows us to comfortably use the code within the source code of a research project from the begin
-%
-%
-%\begin{quote}
 
+
+%
+% link to source code
+%
 \url{https://github.com/dbahls/ddocks.git}
-%\end{quote}
+
+
+
 
 \subsection{Validation}
 
@@ -829,15 +769,15 @@ R> all.equal(
 evaluate to TRUE we have successfully validated the approach in terms of functionality.
 
 We also inserted the two restore calls above in the source code of our example paper (\cite{koenkerzeileis09}) right before the load-data calls respectively, and running Sweave on it produced a report identical to the published article.\footnote{using R x64 2.15.3 on Windows}
-%
-%
-%\begin{quote}
 
+
+%
+% link to source code
+%
 \url{https://github.com/dbahls/paper-restore-model.git}
-%\end{quote}
 
 
-\section{Summary, Vision and Outlook}
+\section{Summary, Vision and Outlook}\label{sec:outlook}
 
 
 The ideas presented in this work can be used to offer data and code behind research publications, which increases transparency, re-use, and reproducibility.
