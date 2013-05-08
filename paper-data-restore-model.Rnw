@@ -140,7 +140,7 @@ These circumstances give us reason to pursue a \textit{data restore model} on th
 One goal is to enable data publication in difficult cases, and another one is to show how the gaps between data citation and code integration can be closed in order to eliminate all manual efforts of arranging code and data files for reproduction attempts. 
 On this basis we develop the requirements for a data restore model and elaborate a generic design in view of an overall data management infrastructure.
 We further explore an experimental implementation which we validate by taking the example of a real-world publication in economics.
-Eventually we close with the vision of a data and code ontology that carries statistical models from paper to a re-usable semantic level.
+Eventually we close with the vision of a \textit{data and code ontology} that carries statistical models from paper to a re-usable semantic level.
 
 
 
@@ -217,7 +217,7 @@ As part of a replication study they have also shown that important details are m
 
 Both, data and code resources make a valuable contribution if findings are to be reproducible and re-usable in computational research.
 And yet, there is more to be considered.
-A comprehensive review of the \textit{JMCB\footnote{Journal of Money, Credit, and Banking} data+code archive} reveals that provenance information for the data used is often incomplete and that submitted code does not reproduce the results either.
+A comprehensive review of the \textit{JMCB\footnote{Journal of Money, Credit, and Banking} data+code archive} revealed that provenance information for the data used is often incomplete and that submitted code does not reproduce the results either.
 It is not uncommon that even the original authors have difficulties understanding the details of their own work only few months after publishing already.
 Apparently, these issues are faced in many other areas of computational research too
 % reproducibility is a problem in many domains
@@ -273,7 +273,7 @@ The remainder of the paper is structured as follows.
 In Section \ref{sec:relatedwork} we discuss related work relevant to our approach. 
 %In section 2 we present a case study with real world examples, where literate programming with research data is applied. 
 %Based on these examples we propose a generic data reconstruction model in section 3. 
-The requirements for a data restore model are elaborated in Section \ref{sec:datareferencing} by which we develop a generic solution that.
+The requirements for a data restore model are elaborated in Section \ref{sec:datareferencing} by which we develop a generic solution.
 An experimental implementation is presented in Section \ref{sec:impl} where we explore its application in context of a case study from economics.
 %Finally, we conclude and present future work in Section \ref{sec:outlook}.
 Finally, we conclude in Section \ref{sec:outlook} with summary and outlook on future work and present a vision that illustrates the potential of this approach .
@@ -479,8 +479,7 @@ Location and structure of data files on the local file system should be inherent
   
 There are plenty of prevailing file formats, ranging from CSV, XML, Excel, entire RDBMS dumps to specific software-dependent and even unknown individual ``raw" types of formats.
 McCullough et al. recommend the use of ASCII encoding \textit{(D)} for the benefit of re-usability, we therefore want to exclude binary formats from our discussion.
-As to be less restrictive and support more contemporary encodings such as UTF-8, we want to pursue the idea of self-describing documents with information on its own encoding contained.
-\footnote{Otherwise, data would need to be converted back and forth which causes trouble whenever a character has no representation in the ASCII standard}
+As to be less restrictive and support more contemporary encodings such as UTF-8, we want to pursue the idea of self-describing documents with information on its own encoding contained.\footnote{Otherwise, data would need to be converted back and forth which causes trouble whenever a character has no representation in the ASCII standard}
 A format-independent solution should be found whereas most importantly, any restored data set must equal the original as to perfectly integrate with the code in the end \textit{(E)}. 
 % which gives us a clear (requirement for successful) test case
 Thus, we note that data citation by persistent identifier (as is the current practice in data publishing) is not sufficient for this purpose, since these identifiers point to data sets on a more abstract level only and do not distinguish or specify a particular format.
@@ -489,7 +488,7 @@ Thus, we note that data citation by persistent identifier (as is the current pra
   
 Further, the data restore model should be applicable for protected data as well \textit{(supports G)}.
 This might sound surprising to the reader as sensitive data cannot be shared per se and a restore concept appears redundant.
-Nevertheless, we want to make the point that the spectrum from open to protected data is gradual, since some data is access-restricted only and can be obtained under certain policies and regulations.
+Nevertheless, we want to make the point that the spectrum from open to closed data is gradual, since some data is access-restricted only and can be obtained under certain policies and regulations.
 Whether or not a data set can be handed out should be a question on legal level only, the restore technique itself, however, should cater for these cases as to give means for repeatability in every scenario.
 % später nochmal aufgreifen: meta data von protected data sharen. man kann wenigstens herausfinden, dass es diese daten gibt
 
@@ -504,7 +503,7 @@ Depending on regulations, the actual data content identified by a given model in
 \footnote{Authentication can be realized using SSL for example. If transfer via internet is considered too insecure, the API can be used to collect data requests as such and to initiate the procedure according to the respective policies.}
 
 
-In contrast to the copy-based approach, the referencing technique allows data and documentation to be maintained at one responsible archive only, with the result that no duplicate efforts have to be made in terms of data curation which is particularly relevant in cases where several external sources were used.
+In contrast to the copy-based approach, the referencing technique allows data and documentation to be maintained at one responsible archive only, with the result that no duplicate efforts have to be made in terms of data curation which is particularly relevant in cases where (several) external sources were used.
 This improves quality of service as all enquiries about data can be answered with the highest possible level of expertise available and gives a clear view on responsibilities in addition.
 
 As a result of this discussion we formulate the following requirements for the data restore model:
@@ -528,11 +527,12 @@ As a result of this discussion we formulate the following requirements for the d
   % das ist vielleicht etwas hart formuliert
 %  \item Researchers are not disturbed by the introduction of technical hinderances such as new data formats or other obligations.
 %  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and suit to their preferred data formats. 
-  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and comply with their preferred data formats. 
+%  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and comply with their preferred data formats. 
+  \item \textbf{Usability:} The method should integrate seamlessly with the researchers' workflows and comply with their preferred tools. 
 		% It should be independent of any particular data format. % kann man das so reinschreiben, klingt jedenfalls komisch
   
   % auch soll es möglichst einfach auf neue unbekannte Datenformate anwendbar sein, mitunter um zukunftsfähig zu sein
-  \item \textbf{Formats:} The method should be sustainable and applicable to alternative, unknown or future data formats.
+  \item \textbf{Formats:} The method should be sustainable and applicable to common, alternative, unknown and future data formats.
 
   % verwendung von ids macht das ganze glasklar. kann man als argument gegenueber query-approach anbringen, wenn wir wollen 
 %  \item It should be simple and transparent, so that problems can be traced easily. % mit hilfe der direkten pointer ist alles gestochen scharf und einfach zu debuggen (?)
@@ -549,7 +549,6 @@ As a result of this discussion we formulate the following requirements for the d
 
 
 
-
 %------------model--------
 \subsection{Designing the model}
 %\subsection{ID-per-Value Approach}
@@ -560,7 +559,7 @@ However, format-independent reconstruction of individual data files requires a m
 The referencing technique implies that data slices of larger data sets can be identified and selected with precision, from global scope.
 Pointers to respective repositories in combination with SQL, SPARQL or other kinds of queries could be a solution.
 A challenge in this approach is that such queries produce result sets in the shape of tables which yet need to be transformed into this unspecified format.
-Whereas this idea is certainly worth exploring, we want to pursue another approach that fits better into the Semantic Web scheme and recent developments in the Linked Open Data movement.
+In this work, we want to pursue another approach that fits better into the Semantic Web scheme and recent developments in the Linked Open Data movement.
 
 
 Currently, more and more data sets are released as Open Government data and statistical offices have already explored the use of semantic technologies as well \cite{Halb_LDOW08}.
@@ -639,6 +638,7 @@ Using the data restore model
 
 
 
+\newpage
 
 
 
@@ -650,18 +650,18 @@ Using the data restore model
 \section{Experimental Implementation}\label{sec:impl}
 
 %We have implemented
-In this section, we present a prototype implementation of the data restore model and a plugin called \textit{ddocks}\footnote{\textit{ddocks} is short for data docks which is meant to reflect the ``transshipment" character of the interface between data retrieval and processing.} 
+In this section, we present a prototype implementation of the data restore model and a plugin called \textit{ddocks}\footnote{\textit{ddocks} is short for \textit{data docks} which is meant to reflect the ``transshipment" character of the interface between data retrieval and processing.} 
 for the computing environment R.
 Since literate programming already is a prominent approach to replicability in the computational statistics community \cite{leisch2011executable} (particularly supports recommendation \textit{(A)}) we want to demonstrate how the plugin can further strengthen this concept.
 %We begin with the creation of data templates and IDs using two data sets from the sources of our example paper \cite{KoenkerZeileis2009}.
 %The plugin implementation is explained subsequently, and we close this section with a validation that tests reconstructed and original data files for equality.
 
 
-In the following, we explain the concept of data templates by taking the example of two data sets from the sources of our example paper \cite{KoenkerZeileis2009}. 
+In the following, we explain the concept of data templates by taking the example of two data sets from the sources of \cite{KoenkerZeileis2009}. 
 %The \textit{ddocks} plugin and a basic validation which are part of the Sweave sources for this article.
 A description of the \textit{ddocks} plugin implementation follows thereafter,
 and a basic validation is given at the end of this section which we have incorporated as part of the Sweave sources for the article the reader is currently looking at.
-The source code are available on GitHub, and respective links are given at the bottom of each subsection.
+The source code is available on GitHub, and respective links are given at the bottom of each subsection.
 
 
 
@@ -739,7 +739,7 @@ ddocks_restore(
 and reproduce the data files on the local file system.
 \textit{ddocks} takes these files as a cache and skips when the restore command is run again, so that the data does not have to be reconstructed every time the code is executed.
 %Researchers could embed these calls within their source code to load the data by template at the beginning of their analyses and leave it there without being bothered.
-Researchers could embed these calls within their source code to load the data by template at the beginning of their analyses without being bothered, and no further modifications are needed at the time of publishing.
+Researchers could embed these calls within their source code to load the data by template at the beginning of their analyses without being bothered again, and no further modifications are needed at the time of publishing.
 
 
 %
@@ -754,7 +754,7 @@ Researchers could embed these calls within their source code to load the data by
 
 
 We validate this experimental implementation with respect to the requirements developed in Section \ref{sec:req}.
-As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set could be referenced from any context (\textit{Traceability}).
+As this approach is based on URIs, namespaces can be used to identify archives, and in combination with locally organized IDs every single value of any data set can be referenced from any context (\textit{Traceability}).
 The requirement item \textit{Curation} is addressed as well, because data can be referenced with precision and maintenance of every data can be done in one place. 
 Since the use of RDF allows us to add an additional link between ID and value, we can separate the two and disclose all information about the data in very detail in machine-understandable form, and yet protect the values (\textit{Protection}).
 Furthermore, when every value can be referred to from anywhere, a simple technique can be applied to enable format-independent reconstruction of data files for which we introduced the concept of a \textit{data template}.
@@ -803,16 +803,16 @@ With the precise identification of values, data provenance can be clarified comp
 Assigning URIs to single data values sets the stage for integration with RDF which has potential for valuable applications.
 A semantic model could offer researchers to run same analyses on updated data with no efforts on data retrieval and composition.
 While most statistical models today exist on paper only, the current work on reproducibility allows to rerun it again on the original or updated data, and the vision is to make them re-usable for other data as well.
-A research publication could remain more relevant for extended periods of time if its prognostic model on time series data for example can still be used on new records while the published article may no longer be relevant to the community.
+A research publication could remain more relevant for extended periods of time if its prognostic model on time series data for example can still be used on new records while the specific results of a published article may no longer be relevant to the community.
 Linked with thesauri, researchers could find these models by topic and re-use them in their own context while valuable user assistance can be given automatically if the semantic annotations specify clearly the kind of data it can process meaningfully.
 
 
-Moreover, these models could serve as input for the artificial intelligence community as they often describe measures for abstract concepts like \textit{living standards} or \textit{justice} which are typically hard to model.
+Moreover, these models could serve as an input for the artificial intelligence community as they often describe measures for abstract concepts like \textit{living standards} or \textit{justice} which are typically hard to model.
 Although these models are and should always be debatable, the semantic linkage to statistical indicators gives information on aspects that are relevant for understanding these concepts.
-Further, prognostic models could be combined in ensembles and trained with machine learning techniques, which might again serve the computational statistics community in their research.
+Further, prognostic models could be combined in ensembles trained with machine learning techniques to further increase accuracy, which might again serve the computational statistics community in their research.
 
 
-Considering a tight connection of data or data references with code and the eventually text of a research publication, the idea of a data and code ontology comes up that models the interconnection between data, code and research results in detail. 
+Considering a tight connection of data or data references with code and the eventually text of a research publication, the idea of a \textit{data and code ontology} comes up that models the interconnection between data, code and research results in detail. 
 Moreover, if also containing the data values of our data template, it could also be used as an intermediate data set for reproduce data computations without having access to the original data.
 We want to explore this scenario on the basis of \cite{arai2011fragile} for which Sweave sources are available while the data set is access-restricted.
 Yet, scalability remains to be tested in regard to curation efforts and technical performance.
