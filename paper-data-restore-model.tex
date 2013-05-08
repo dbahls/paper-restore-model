@@ -648,10 +648,12 @@ Since literate programming already is a prominent approach to replicability in t
 %The plugin implementation is explained subsequently, and we close this section with a validation that tests reconstructed and original data files for equality.
 
 
-For further details, the reader is invited to take a look at the source code we published on GitHub.
-Respective links are given in the subsections
-where we introduce the concept of a data template using two data sets from the sources of our example paper \cite{KoenkerZeileis2009}. 
-The \textit{ddocks} plugin and a basic validation which are part of the Sweave sources for this article.
+In the following, we explain the concept of data templates by taking the example of two data sets from the sources of our example paper \cite{KoenkerZeileis2009}. 
+%The \textit{ddocks} plugin and a basic validation which are part of the Sweave sources for this article.
+A description of the \textit{ddocks} plugin implementation follows thereafter,
+and a basic validation is given at the end of this section which we have incorporated as part of the Sweave sources for the article the reader is currently looking at.
+The source code are available on GitHub, and respective links are given at the bottom of each subsection.
+
 
 
 \subsection{Generating the Data Templates}
@@ -779,7 +781,7 @@ R> all.equal(
 \end{Schunk}
 evaluate to TRUE we have successfully validated the approach in terms of functionality.
 
-We also inserted the two restore calls above in the source code of our example paper (\cite{koenkerzeileis09}) right before the load-data calls respectively, and running Sweave on it produced a report identical to the published article.\footnote{using R x64 2.15.3 on Windows}
+We also inserted the two restore calls above in the source code of our example paper (\cite{KoenkerZeileis2009}) right before the load-data calls respectively, and running Sweave on it produced a report identical to the published article.\footnote{using R x64 2.15.3 on Windows}
 
 
 %
@@ -792,13 +794,13 @@ We also inserted the two restore calls above in the source code of our example p
 
 
 The ideas presented in this work can be used to offer data and code behind research publications, which increases transparency, re-use, and reproducibility.
-We have formulated requirements on the basis of the recommendations formulated in \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} and further followed the idea of grained data referencing in our data restore model.
+We have formulated requirements on the basis of the recommendations in \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} and further followed the idea of fine-grained data referencing in our data restore model.
 %Within the data template single data values can be addressed, even if the original data set is not publicly available.
-The introduced concept of data templates uses precise pointers to the data used and can be disseminated freely as they do not disclose sensitive content.
+The introduced concept of data templates uses precise pointers to the original data sources and can be disseminated freely as they do not disclose sensitive content.
 Since data files can be restored in the format used by the researcher, the template technique closes the gaps between data citation and program code integration.
 The \textit{ddocks} prototype illustrates how the restore model can be applied in a way that enables a "one-click" solution for re-running analyses on other systems provided that users have permission to acquire the data and system dependencies are resolved.
-Especially If linked with research articles, the resources can be used in tutorials to teach computational research in practice, serve as re-usable research resources, or can be used within review-processes.
-With the precise identification of values, provenance of the data used can be clarified comprehensively whereas responsibilities for maintenance and documentation of a data set are left to one archive respectively, so that harvesting techniques can be used efficiently to carry forward documentation, notes and updates about the data.
+Especially if linked with research articles, the resources can be used in tutorials to teach computational research in practice, serve as re-usable research resources, or can be used within review-processes.
+With the precise identification of values, data provenance can be clarified comprehensively whereas responsibilities for maintenance and documentation of a data set are left to one archive respectively, so that harvesting techniques can be used efficiently to carry forward documentation, notes and updates about the data.
 
 
 
@@ -806,7 +808,7 @@ Assigning URIs to single data values sets the stage for integration with RDF whi
 A semantic model could offer researchers to run same analyses on updated data with no efforts on data retrieval and composition.
 While most statistical models today exist on paper only, the current work on reproducibility allows to rerun it again on the original or updated data, and the vision is to make them re-usable for other data as well.
 A research publication could remain more relevant for extended periods of time if its prognostic model on time series data for example can still be used on new records while the published article may no longer be relevant to the community.
-Linked with thesauri, researchers can find these models by topic and re-use them in their own context while valuable user assistance can be given automatically if the semantic annotations specify clearly the kind of data it can process meaningfully.
+Linked with thesauri, researchers could find these models by topic and re-use them in their own context while valuable user assistance can be given automatically if the semantic annotations specify clearly the kind of data it can process meaningfully.
 
 
 Moreover, these models could serve as input for the artificial intelligence community as they often describe measures for abstract concepts like \textit{living standards} or \textit{justice} which are typically hard to model.
@@ -859,7 +861,7 @@ for the purpose of replicability in computational research.
 %
 % * outlook: data and code ontology, wie sieht es aus mit den Verifiable Computational Research resourcen, replication attempt und linked science ontology?
 %
-%
+% * Bibliography: unvollständige Angaben: De Leeuw, Barnes
 %
 
 
