@@ -180,7 +180,7 @@ cleanup <- FALSE
 Repeatability of research results is a fundamental criterion in science. % experiments are conducted in different environments and by different persons as to validate whether the results depend on considered parameters only.
 Experiments must lead to the same findings when conducted by other persons or in other environments, under the premise of keeping relevant and considered parameters constant.
 % sciencemag article on "Reproducible research in computational science"
-In computational research, this remains unverified in many cases due to various reasons \cite{peng2011reproducible}.
+In computational research, this remains unverified in many cases due to various reasons \cite{Peng02122011}.
 One of them is the plain fact that the supporting data is often unavailable to others which gives rise for a more organized and open data management practice \cite{Wood1298248}.
 While a scientific publication is commonly understood as synonymous with a peer-reviewed article alone, program code and data take the role of nice-to-have additional material only that rarely find their way to the public.
 %There are numerous examples of research publications that turned out inconsistent eventually, either because of mistakes,  
@@ -217,7 +217,7 @@ As part of a replication study they have also shown that important details are m
 
 Both, data and code resources make a valuable contribution if findings are to be reproducible and re-usable in computational research.
 And yet, there is more to be considered.
-A comprehensive review of the \textit{JMCB\footnote{Journal of Money, Credit, and Banking} data+code archive} revealed that provenance information for the data used is often incomplete and that submitted code does not reproduce the results either.
+A comprehensive review of the \textit{JMCB\footnote{Journal of Money, Credit, and Banking} data+code archive} revealed that provenance information for the data used is often incomplete and that submitted code does not reproduce the results either \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337}.
 It is not uncommon that even the original authors have difficulties understanding the details of their own work only few months after publishing already.
 Apparently, these issues are faced in many other areas of computational research too
 % reproducibility is a problem in many domains
@@ -555,14 +555,29 @@ As a result of this discussion we formulate the following requirements for the d
 
 
 The requirements can be realized in several ways.
-However, format-independent reconstruction of individual data files requires a mechanism that renders data content into any unknown or unspecified structure.
-The referencing technique implies that data slices of larger data sets can be identified and selected with precision, from global scope.
-Pointers to respective repositories in combination with SQL, SPARQL or other kinds of queries could be a solution.
-A challenge in this approach is that such queries produce result sets in the shape of tables which yet need to be transformed into this unspecified format.
-In this work, we want to pursue another approach that fits better into the Semantic Web scheme and recent developments in the Linked Open Data movement.
+However, giving freedom to researchers to use or reuse data in their preferred environments and associated formats needs careful consideration.
+Data could be offered in a variety of formats, each version provided with means for persistent identification, so that data citation as well as seamless code integration is ensured.
+But this approach requires program code to function on complete data sets, which impairs usability considering that researchers typically select slices of indicators and observations\footnote{e.g. selection of certain indicators and reference periods from large time series data} for input to their programs.
+Further, the approach would lead to multiple persistent identifiers for content-wise identical data and complicate bibliometric measures.
+These conditions suggest the use of a primary data representation from which all other formats can be derived whereas one referencing method only is needed to serve all scenarios.
+As a consequence, such model must give means for identification of any possible data slice from global scope.
+Pointers to respective repositories in combination with structured queries (such as SQL or SPARQL) could be a solution.
+A challenge in this approach, however, is that such queries produce result sets in the shape of tables which yet need to be transformed into this unspecified format as used by a researcher.
+In the following, we elaborate a model that aims to overcome these challenges.
+
+The model has to make sure that individual data slices and values can be identified without ambiguity in the long term.
+As we could not find an established data model for statistical data that is not subject to change and incorporates versioning at the same time, we discarded model-based queries and decided to use individual identifiers for every single value of a data set.
+The number of IDs needed is certainly high and questions of scalability raise immediately.
+On the other side, the IDs we are going to introduce can as well be interpreted as single-result queries or as the variables of a regular query.
+%To give an estimation on the technical implications, the number of additional triples needed is twice the number of data values, or the same number only if not linked with other semantic resources.
+%Maintenance could be supported with tools and there should not be any additional efforts, provided that the data is maintained in a structured representation already.
+%BZ: what tools?
+However, we would like to have a discussion on this na\"{\i}ve approach and leave the investigation of scalability for now.
+We will introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values.
+This could also help solve some of the problems in using linked data for scientific purposes \cite{bechhofer2010linked}\footnote{The problem of precise data references has been recognized by the Semantic Statistics community as well \url{http://datalift.org/en/event/semstats2013}.}, which will be the basis of the model.
 
 
-Currently, more and more data sets are released as Open Government data and statistical offices have already explored the use of semantic technologies as well \cite{Halb_LDOW08}.
+With the ongoing linked open data movement, awareness and knowledge about semantic technologies and the RDF data model has found its way to many application domains, among which the domain of statistical data\cite{Halb_LDOW08}.
 %BZ: Hier suche ich noch ein, zwei Referenzen raus, die zusammen mit Halb_LDOW08 aufgezaehlt werden koennen.
 These technologies break down the separation between black box data bundles and attached metadata as they interweave data with its documentation.
 %BZ: These technologies break not only down the separation between black box data bundles (the raw data) and attached metadata as it interweaves data with its documentation.
@@ -570,21 +585,18 @@ These technologies break down the separation between black box data bundles and 
 The data content is more accessible and interpretable to machines which sets the stage for a variety of new applications, e.g. for data retrieval \cite{BahlsTochtermann_2012}.
 %BZ: das wesentliche fuer unseren approach ist hier eigentlich gesagt, alles andere wuerde wohl eher in die related work passen, oder? wuerde diesen absatz mit dem folgenden zusammenfassen.
 
-Our approach is based on the concept of assigning individual IDs to every single value of a data set.
-%BZ: Das ist notwendig, da man nicht das dataset als ganzen restoren moechte, sondern ja gerade die einzelnen data values benoetigt, um ggf. berechnungen nachvollziehen zu koennen. Bekomm das jetzt grad nicht griffig formuliert...
-The number of IDs needed is certainly high and questions of scalability might rise immediately.
-To give an estimation on the technical implications, the number of additional triples needed is twice the number of data values, or the same number only if not linked with other semantic resources.
-Maintenance could be supported with tools and there should not be any additional efforts, provided that the data is maintained in a structured representation already.
-%BZ: what tools?
-However, we would like to have a discussion on this naïve approach and leave the investigation of scalability for now.
 
-We introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values.
-This could also help solve some of the problems in using linked data for scientific purposes \cite{bechhofer2010linked}\footnote{The problem of precise data references has been recognized by the Semantic Statistics community as well \url{http://datalift.org/en/event/semstats2013}.}.
+
+
 
 
 
 \subsection{Workflows}
 
+% edawax survey sven vlaeminck
+%
+%\cite{LQURN:NBN:NL:UI:10-1-114595}
+%
 
 If implemented in big scale as a holistic information infrastructure for research data management in statistics, the presented approach has further implications on workflows and gives ideas for a big picture.
 Data archives could offer the download of data templates along with the actual data, so that researchers have the precise references right from the beginning of their research.
@@ -638,8 +650,6 @@ Using the data restore model
 
 
 
-\newpage
-
 
 
 
@@ -669,7 +679,7 @@ The source code is available on GitHub, and respective links are given at the bo
 
 %We introduce the concept of a \textit{data template} which is based on the idea to replace every value within a data file with its associated ID, so that the original file can be restored again simply by replacing them back with its associated values which solves the requirements of \textit{Equality}.
 The data template contains a header section in which we can specify encoding and tokens that are used to identify IDs within the template.
-In addition, we also declare Web Service addresses for every namespace used (which is only one for our example) under the pragmatic assumption that every archive provides one such Web Service for data enquiries only.
+In addition, we also declare Web Service addresses for every namespace used (which is only one for our example) under the pragmatic assumption that every namespace can be associated with one archive providing one such Web Service for data enquiries.
 %At this point, we do not want to elaborate on the Web Service interface, however, we have used SPARQL endpoints in the proof of concept implementation presented in Section \ref{sec:impl}.
 
 
@@ -803,20 +813,20 @@ With the precise identification of values, data provenance can be clarified comp
 Assigning URIs to single data values sets the stage for integration with RDF which has potential for valuable applications.
 A semantic model could offer researchers to run same analyses on updated data with no efforts on data retrieval and composition.
 While most statistical models today exist on paper only, the current work on reproducibility allows to rerun it again on the original or updated data, and the vision is to make them re-usable for other data as well.
-A research publication could remain more relevant for extended periods of time if its prognostic model on time series data for example can still be used on new records while the specific results of a published article may no longer be relevant to the community.
+A research publication could remain more relevant for extended periods of time if its predictive model on time series data for example can still be used on new records while the specific results of a published article may no longer be relevant to the community.
 Linked with thesauri, researchers could find these models by topic and re-use them in their own context while valuable user assistance can be given automatically if the semantic annotations specify clearly the kind of data it can process meaningfully.
 
 
 Moreover, these models could serve as an input for the artificial intelligence community as they often describe measures for abstract concepts like \textit{living standards} or \textit{justice} which are typically hard to model.
 Although these models are and should always be debatable, the semantic linkage to statistical indicators gives information on aspects that are relevant for understanding these concepts.
-Further, prognostic models could be combined in ensembles trained with machine learning techniques to further increase accuracy, which might again serve the computational statistics community in their research.
+Further, predictive models could be combined in ensembles trained with machine learning techniques to further increase accuracy, which might again serve the computational statistics community in their research.
 
 
-Considering a tight connection of data or data references with code and the eventually text of a research publication, the idea of a \textit{data and code ontology} comes up that models the interconnection between data, code and research results in detail. 
-Moreover, if also containing the data values of our data template, it could also be used as an intermediate data set for reproduce data computations without having access to the original data.
+Considering the coupling of data or data references with code and the report text of a research publication eventually, the idea of a \textit{data and code ontology} comes up that models the interconnection between data, code and research results in detail. 
+Moreover, it could also be used to model algorithmic transitions from original to intermediate and result data sets, which would help clarify data provenance and allow for reproduction from open intermediate data sets while original data might be closed an unaccessible.
 We want to explore this scenario on the basis of \cite{arai2011fragile} for which Sweave sources are available while the data set is access-restricted.
 Yet, scalability remains to be tested in regard to curation efforts and technical performance.
-We will investigate the design and development of a data and code ontology in our future work for which we will take into account recommendation \textit{(C)} in \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} and other
+We will investigate the design and development of a data and code ontology in future work for which we take into account recommendation \textit{(C)} in \cite{RePEc_ejw_journl_v_4_y_2007_i_3_p_326_337} and other
 %
 % recommendations (liste von ressourcen, die gegeben sein sollten, damit reproduktion möglich ist)
 %
@@ -859,7 +869,9 @@ for the purpose of replicability in computational research.
 %
 % * Bibliography: unvollständige Angaben: De Leeuw, Barnes
 %
-
+% * id-approach: we should also mention: path-based approach: id-per observation + predicate-path to value, lower number of ids required, but maybe not precise enough? other difficulties then, but needs to be explored too (outlook/design)
+%
+%
 
 
 
