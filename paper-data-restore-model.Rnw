@@ -26,7 +26,15 @@
 %
 % For tracking purposes - this is V3.1SP - APRIL 2009
 
-\documentclass{acm_proc_article-sp}
+
+
+
+%\documentclass{acm_proc_article-sp}
+\documentclass{sig-alternate}
+
+
+
+
 
 %\usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc}
@@ -46,10 +54,18 @@ data template
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
+\conferenceinfo{i-Know}{'13, September 04 - 06 2013, Graz, Austria}
+
+\CopyrightYear{2013}
+\crdata{978-1-4503-2300-0/13/09} 
+
+
 \title{
 A Data Restore Model\\
 for Reproducibility in Computational Statistics
 }
+
+
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -152,11 +168,17 @@ Eventually we close with the vision of a \textit{data and code ontology} that ca
 % http://www.acm.org/about/class/2012
 
 % A category with the (minimum) three required fields
+\category{H.3.5}{Online Information Services}{Data sharing}
 \category{H.3.7}{Digital Libraries}{Miscellaneous}
 %A category including the fourth, optional field follows...
 \category{I.2.4}{Knowledge Representation Formalisms and Methods}{Semantic networks}
 
-\terms{Design, Algorithms, Economics}
+%\category{Digital libraries and archives}
+
+
+\terms{Design, Economics, Algorithms, Verification}
+
+\newpage
 
 \keywords{Research Data Management, Semantic Digital Data Library, Linked Data, Statistics} % NOT required for Proceedings
 
@@ -173,7 +195,7 @@ cleanup <- FALSE
 @
 
 
-\newpage
+%\newpage
 
 \section{Introduction}
 
@@ -566,7 +588,7 @@ A challenge in this approach, however, is that such queries produce result sets 
 In the following, we elaborate a model that aims to overcome these challenges.
 
 The model has to make sure that individual data slices and values can be identified without ambiguity in the long term.
-As we could not find an established data model for statistical data that is not subject to change and incorporates versioning at the same time, we discarded model-based queries and decided to use individual identifiers for every single value of a data set.
+As we could not find an established data model for statistical data that is not subject to change and incorporates versioning at the same time, we discarded model-based queries and decided to use identifiers for every single value of a data set.
 The number of IDs needed is certainly high and questions of scalability raise immediately.
 On the other side, the IDs we are going to introduce can as well be interpreted as single-result queries or as the variables of a regular query.
 %To give an estimation on the technical implications, the number of additional triples needed is twice the number of data values, or the same number only if not linked with other semantic resources.
@@ -606,6 +628,7 @@ The researcher simply submits code and data templates, and other researchers can
 
 
 In case the researcher used own data, the data would have to be submitted to an affiliated archive\footnote{Researchers have to archive their data, either locally or at another archive. By "affiliated archive" we denote this repository.} in beforehand where the respective data template and IDs involved are generated first.
+At this point, metadata on provenance and other documentation should be collected which can be supported through scientific workflow systems\cite{cau21112}.
 The archive returns the template to the researcher who can then publish it in the same way as described above.
 This procedure must be supported with tools for mapping and ID generation.
 Furthermore, these tools should provide for further semantic annotation of the content (using the RDF Data Cube Vocabulary for example) so that documentation about the data is available as well.
@@ -795,6 +818,7 @@ We also inserted the two restore calls above in the source code of our example p
 %
 \url{https://github.com/dbahls/paper-restore-model.git}
 
+%\newpage
 
 \section{Summary, Vision and Outlook}\label{sec:outlook}
 
@@ -880,7 +904,7 @@ for the purpose of replicability in computational research.
 
 
 
-\balancecolumns
+%\balancecolumns
 
 
 \bibliographystyle{abbrv}
